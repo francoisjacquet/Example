@@ -1,7 +1,11 @@
 Example Module
+
 http://github.com/francoisjacquet/rosariosis-module-example
+
 Version 1.0 - December, 2014
+
 License GNU GPL v2
+
 Author François Jacquet
 
 DESCRIPTION
@@ -22,5 +26,7 @@ Resources
 INSTALL
 -------
 Copy the Example/ folder and its content inside the modules/ folder of RosarioSIS.
+
 Go to School Setup > School Configuration > Modules and click "Activate".
+
 Requires RosarioSIS 2.7+
