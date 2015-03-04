@@ -109,7 +109,6 @@ if(empty($_REQUEST['modfunc'])) //display Search or list of students
 	$extra['link'] = array('FULL_NAME'=>false);
 	$extra['new'] = true;
 	$extra['options']['search'] = false;
-	$extra['force_search'] = true;
 
 	//call our custom Widget
 	MyWidgets('subject');
