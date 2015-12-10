@@ -1,25 +1,27 @@
+/**
+ * Install SQL
+ * Required if the module adds programs to other modules
+ * Required if the module has menu entries
+ * - Add profile exceptions for the module to appear in the menu
+ * - Add program config options if any (to every schools)
+ * - Add module specific tables (and their eventual sequences & indexes)
+ *   if any: see rosariosis.sql file for examples
+ *
+ * @package Example module
+ */
 
-/**********************************************************************
- install.sql file
- Optional if the module only overrides other modules programs
- Required if the module adds programs to other modules
- Required if the module has menu entries
- - Add profile exceptions for the module to appear in the menu
- - Add program config options if any (to every schools)
- - Add module specific tables (and their eventual sequences & indexes) 
- if any: see rosariosis.sql file for examples
-***********************************************************************/
-
-/*******************************************************
- profile_id:
- 	- 0: student
- 	- 1: admin
- 	- 2: teacher
- 	- 3: parent
- modname: should match the Menu.php entries
- can_use: 'Y'
- can_edit: 'Y' or null (generally null for non admins)
-*******************************************************/
+/**
+ * profile_exceptions Table
+ * 
+ * profile_id:
+ * - 0: student
+ * - 1: admin
+ * - 2: teacher
+ * - 3: parent
+ * modname: should match the Menu.php entries
+ * can_use: 'Y'
+ * can_edit: 'Y' or null (generally null for non admins)
+ */
 --
 -- Data for Name: profile_exceptions; Type: TABLE DATA; 
 --
@@ -41,13 +43,15 @@ INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
 
 
 
-/*********************************************************
- syear: school year (school may have various years in DB)
- school_id: may exists various schools in DB
- program: convention is module name, for ex.: 'example'
- title: for ex.: 'EXAMPLE_[your_program_config]'
- value: string
-**********************************************************/
+/**
+ * program_config Table
+ *
+ * syear: school year (school may have various years in DB)
+ * school_id: may exists various schools in DB
+ * program: convention is module name, for ex.: 'example'
+ * title: for ex.: 'EXAMPLE_[your_program_config]'
+ * value: string
+ */
 --
 -- Data for Name: program_config; Type: TABLE DATA; Schema: public; Owner: rosariosis
 --
