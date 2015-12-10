@@ -3,7 +3,7 @@
  * ExampleResource.php file
  *
  * Optional
- * - Adds a program to the Resources modules.
+ * - Adds a program to the Resources module.
  *
  * @package Example module
  */
@@ -23,14 +23,14 @@ $students_RET = DBGet( DBQuery( "SELECT SCHOOL_ID, COUNT(STUDENT_ID) AS STUDENT_
 	WHERE SYEAR='" . UserSyear() . "'
 	GROUP BY SCHOOL_ID" ), array(), array( 'SCHOOL_ID' ) );
 
-$admins_RET = $teachers_RET = $parents_RET = array();
-
 $school_IDs = array_keys( $schools_RET );
+
+$admins_RET = $teachers_RET = $parents_RET = array();
 
 // For each school.
 foreach ( (array) $school_IDs as $school_ID )
 {
-	$user_SQL = "SELECT " . $school_ID . " AS SCHOOL_ID, COUNT(STAFF_ID) AS ADMIN_NB
+	$user_SQL = "SELECT " . $school_ID . " AS SCHOOL_ID, COUNT(STAFF_ID) AS [USER]_NB
 		FROM STAFF WHERE SYEAR='" . UserSyear() . "'
 		AND profile='[user]'
 		AND (SCHOOLS LIKE '%," . $school_ID . ",%'
@@ -38,24 +38,20 @@ foreach ( (array) $school_IDs as $school_ID )
 			OR SCHOOLS='')";
 
 	// Get the number of Administrators.
-	$admins_RET = $admins_RET + DBGet( DBQuery(
-		str_replace( '[user]', 'admin', $user_SQL ),
+	$admins_RET[ $school_ID ] = DBGet( DBQuery(
+		str_replace( array( '[user]', '[USER]' ), array( 'admin', 'ADMIN' ), $user_SQL ),
 		array(),
 		array( 'SCHOOL_ID' )
 	) );
 
 	// Get the number of Teachers.
-	$teachers_RET = $teachers_RET + DBGet( DBQuery(
-		str_replace( '[user]', 'teacher', $user_SQL ),
-		array(),
-		array( 'SCHOOL_ID' )
+	$teachers_RET[ $school_ID ] = DBGet( DBQuery(
+		str_replace( array( '[user]', '[USER]' ), array( 'teacher', 'TEACHER' ), $user_SQL )
 	) );
 
 	// Get the number of Parents.
-	$parents_RET = $parents_RET + DBGet( DBQuery(
-		str_replace( '[user]', 'parent', $user_SQL ),
-		array(),
-		array( 'SCHOOL_ID' )
+	$parents_RET[ $school_ID ] = DBGet( DBQuery(
+		str_replace( array( '[user]', '[USER]' ), array( 'parent', 'PARENT' ), $user_SQL )
 	) );
 }
 
@@ -67,17 +63,17 @@ $i = 1; // The first key of the array should not be 0.
 // For each school.
 foreach ( (array) $school_IDs as $school_ID )
 {
-	$resources[ $i ] = $schools_RET[ $school_ID ][1];
-	$resources[ $i ] = $resources_RET[ $i ] + $students_RET[ $school_ID ][1];
-	$resources[ $i ] = $resources_RET[ $i ] + $admins_RET[ $school_ID ][1];
-	$resources[ $i ] = $resources_RET[ $i ] + $teachers_RET[ $school_ID ][1];
-	$resources[ $i ] = $resources_RET[ $i ] + $parents_RET[ $school_ID ][1];
+	$resources[ $i ] = (array) $schools_RET[ $school_ID ][1];
+	$resources[ $i ] += (array) $students_RET[ $school_ID ][1];
+	$resources[ $i ] += (array) $admins_RET[ $school_ID ][1];
+	$resources[ $i ] += (array) $teachers_RET[ $school_ID ][1];
+	$resources[ $i ] += (array) $parents_RET[ $school_ID ][1];
 
 	$i++;
 }
 
 // Uncomment the following line to debug and see the Queries results
-// var_dump($schools_RET,$students_RET, $admins_RET, $teachers_RET, $parents_RET, $resources_RET);exit;
+// var_dump($schools_RET,$students_RET, $admins_RET, $teachers_RET, $parents_RET, $resources);exit;
 
 /**
  * Prepare ListOutput table options
