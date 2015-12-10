@@ -20,7 +20,7 @@ if ( $_REQUEST['modfunc'] === 'save' ) // Print PDF.
 		// Get Marking Period information.
 		$mp_RET = DBGet( DBQuery( "SELECT TITLE,END_DATE
 			FROM SCHOOL_MARKING_PERIODS
-			WHERE MP='Qtr'
+			WHERE MP='QTR'
 			AND MARKING_PERIOD_ID='" . UserMP() . "'" ) );
 
 		// Get School information.
@@ -106,19 +106,19 @@ if ( $_REQUEST['modfunc'] === 'save' ) // Print PDF.
 			echo '<tr><td><span style="font-size:xx-large;">' . $subject_text .
 				'</span></td></tr></table>';
 
-			echo '<br /><table style="margin:0 auto; width:80%;">';
+			echo '<br /><br /><table style="margin:0 auto; width:80%;">';
 
 			echo '<tr><td><span style="font-size:x-large;">' . $student['TEACHER'] . '</span><br />
-				<span style="font-size:medium;">' . _( 'Teacher' ) . '</span></td>';
+				<span style="font-size:large;">' . _( 'Teacher' ) . '</span></td>';
 
 			echo '<td><span style="font-size:x-large;">' . $mp_RET[1]['TITLE'] . '</span>
-				<br /><span style="font-size:medium;">' . _( 'Marking Period' ) . '</span></td></tr>';
+				<br /><span style="font-size:large;">' . _( 'Marking Period' ) . '</span></td></tr>';
 
 			echo '<tr><td><span style="font-size:x-large;">' . $school_info_RET[1]['PRINCIPAL'] . '</span><br />
-				<span style="font-size:medium;">' . _( 'Principal' ) . '</span></td>';
+				<span style="font-size:large;">' . _( 'Principal' ) . '</span></td>';
 
 			echo '<td><span style="font-size:x-large;">' . ProperDate( date( 'Y.m.d', strtotime( $mp_RET[1]['END_DATE'] ) ) ) . '</span><br />
-				<span style="font-size:medium;">' . _( 'Date' ) . '</span></td></tr>';
+				<span style="font-size:large;">' . _( 'Date' ) . '</span></td></tr>';
 
 			echo '</table>';
 		}
@@ -153,7 +153,7 @@ if ( empty( $_REQUEST['modfunc'] ) )
 		$extra['extra_header_left'] = '<table>';
 
 		$extra['extra_header_left'] .= '<tr class="st"><td style="vertical-align: top;">' . _( 'Text' ) . '</td>
-			<td><textarea name="subject_text"></textarea></td></tr>';
+			<td><textarea name="subject_text" rows="8"></textarea></td></tr>';
 
 		// Substitutions list.
 		$extra['extra_header_left'] .= '<tr class="st"><td style="vertical-align: top;">' . _( 'Substitutions' ) . ':</td>
@@ -194,7 +194,7 @@ if ( empty( $_REQUEST['modfunc'] ) )
 		$extra['functions'] = array( 'CHECKBOX' => '_makeChooseCheckbox' );
 
 		$extra['columns_before'] = array(
-			'CHECKBOX' => '</A><INPUT type="checkbox" value="Y" name="controller" checked onclick="checkAll(this.form,this.form.controller.checked,\'st_arr\');"><A>',
+			'CHECKBOX' => '</A><input type="checkbox" value="Y" name="controller" checked onclick="checkAll(this.form,this.form.controller.checked,\'st_arr\');"><A>',
 		);
 	}
 
@@ -237,7 +237,7 @@ if ( empty( $_REQUEST['modfunc'] ) )
  */
 function _makeChooseCheckbox( $value, $column )
 {
-	return '&nbsp;&nbsp;<INPUT type="checkbox" name="st_arr[]" value="' . $value . '" checked />';
+	return '<input type="checkbox" name="st_arr[]" value="' . $value . '" checked />';
 }
 
 
@@ -299,7 +299,7 @@ function MyWidgets( $item )
 			$subjects_options = array();
 
 			// Create select options with subjects.
-			foreach ( (array)$subjects_RET as $subject )
+			foreach ( (array) $subjects_RET as $subject )
 			{
 				$subjects_options[ $subject['SUBJECT_ID'] ] = $subject['TITLE'];
 			}
@@ -308,7 +308,7 @@ function MyWidgets( $item )
 
 			// Add Widget to Search.
 			$extra['search'] .= '<tr><td>' . _( 'Subject' ) . '</td>
-				<td>' . SelectInput( '', 'subject_id', '', $subjects_options, $allow_na, 'required' ).
+				<td>' . SelectInput( '', 'subject_id', '', $subjects_options, $allow_na, 'required' ) .
 				'</td></tr>';
 
 		break;
