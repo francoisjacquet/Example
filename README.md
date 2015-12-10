@@ -2,7 +2,7 @@ Example Module
 
 http://github.com/francoisjacquet/rosariosis-module-example
 
-Version 1.0 - December, 2014
+Version 1.1 - December, 2015
 
 License GNU GPL v2
 
