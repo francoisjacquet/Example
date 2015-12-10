@@ -10,37 +10,39 @@
 DrawHeader( ProgramTitle() ); // Display main header with Module icon and Program title.
 
 if ( $_REQUEST['modfunc'] === 'update'
-	&& isset( $_POST['values'] )
 	&& AllowEdit() ) // AllowEdit must be verified before inserting, updating, deleting data.
 {
 
-	// Verify value is numeric.
-	if ( empty( $_REQUEST['values']['EXAMPLE_CONFIG'] )
-		|| is_numeric( $_REQUEST['values']['EXAMPLE_CONFIG'] ) )
+	if ( isset( $_POST['values'] ) )
 	{
-		$sql = '';
-
-		// Build SQL queries.
-		foreach ( (array) $_REQUEST['values'] as $column => $value )
+		// Verify value is numeric.
+		if ( empty( $_REQUEST['values']['EXAMPLE_CONFIG'] )
+			|| is_numeric( $_REQUEST['values']['EXAMPLE_CONFIG'] ) )
 		{
-			$sql .= "UPDATE PROGRAM_CONFIG SET ";
+			$sql = '';
 
-			$sql .= "VALUE='" . $value . "' WHERE TITLE='" . $column . "'";
+			// Build SQL queries.
+			foreach ( (array) $_REQUEST['values'] as $column => $value )
+			{
+				$sql .= "UPDATE PROGRAM_CONFIG SET ";
 
-			$sql .= " AND SCHOOL_ID='" . UserSchool() . "' AND SYEAR='" . UserSyear() . "';";
+				$sql .= "VALUE='" . $value . "' WHERE TITLE='" . $column . "'";
+
+				$sql .= " AND SCHOOL_ID='" . UserSchool() . "' AND SYEAR='" . UserSyear() . "';";
+			}
+
+			// Execute queries.
+			DBQuery( $sql );
+
+			// Add note.
+			$note[] = button( 'check' ) . '&nbsp;' .
+				dgettext( 'Example', 'The configuration value has been modified.' );
 		}
-
-		// Execute queries.
-		DBQuery( $sql );
-
-		// Add note.
-		$note[] = '<IMG SRC="assets/check_button.png" class="alignImg" />&nbsp;' .
-			dgettext( 'Example', 'The configuration value has been modified.' );
-	}
-	else // If no value or value not numeric.
-	{
-		// Add error message.
-		$error[] = _( 'Please enter valid Numeric data.' );
+		else // If no value or value not numeric.
+		{
+			// Add error message.
+			$error[] = _( 'Please enter valid Numeric data.' );
+		}
 	}
 
 	unset( $_REQUEST['modfunc'] );
@@ -100,7 +102,7 @@ if ( empty( $_REQUEST['modfunc'] ) )
 	PopTable( 'footer' );
 
 	// SubmitButton is diplayed only if AllowEdit.
-	echo '<div class="center">' . SubmitButton( _( 'Save' ) ) . '</div>';
+	echo '<br /><div class="center">' . SubmitButton( _( 'Save' ) ) . '</div>';
 
 	echo '</form>';
 }
