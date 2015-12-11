@@ -53,7 +53,12 @@ if ( $_REQUEST['modfunc'] === 'save' ) // Print PDF.
 		// PDF options.
 		$no_margins = array( 'top' => 0, 'bottom' => 0, 'left' => 0, 'right' => 0 );
 
-		$handle = PDFStart( false, $no_margins ); // Start PDF buffer.
+		if ( version_compare( ROSARIO_VERSION, '2.8.24', '<' ) )
+		{
+			$handle = PDFStart( false, $no_margins ); // Start PDF buffer.
+		}
+		else
+			$handle = PDFStart( array( 'css' => false, 'margins' => $no_margins ) ); // Start PDF buffer.
 
 		$_SESSION['orientation'] = 'landscape';
 
