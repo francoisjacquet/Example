@@ -1,4 +1,7 @@
 Example Module
+==============
+
+![screenshot](https://raw.githubusercontent.com/francoisjacquet/rosariosis-module-example/master/Example/screenshot.png)
 
 http://github.com/francoisjacquet/rosariosis-module-example
 
