@@ -1,9 +1,9 @@
 Example Module
 ==============
 
-![screenshot](https://raw.githubusercontent.com/francoisjacquet/rosariosis-module-example/master/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/francoisjacquet/Example/master/screenshot.png)
 
-http://github.com/francoisjacquet/rosariosis-module-example
+http://github.com/francoisjacquet/Example
 
 Version 1.1 - December, 2015
 
