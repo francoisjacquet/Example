@@ -1,7 +1,7 @@
 Example Module
 ==============
 
-![screenshot](https://raw.githubusercontent.com/francoisjacquet/rosariosis-module-example/master/Example/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/francoisjacquet/rosariosis-module-example/master/screenshot.png)
 
 http://github.com/francoisjacquet/rosariosis-module-example
 
@@ -28,8 +28,8 @@ Resources
 
 INSTALL
 -------
-Copy the Example/ folder and its content inside the modules/ folder of RosarioSIS.
+Copy the `Example/` folder (if named `Example-master`, rename it) and its content inside the `modules/` folder of RosarioSIS.
 
-Go to School Setup > School Configuration > Modules and click "Activate".
+Go to _School Setup > School Configuration > Modules_ and click "Activate".
 
 Requires RosarioSIS 2.7+

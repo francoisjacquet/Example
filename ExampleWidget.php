@@ -122,6 +122,7 @@ if ( $_REQUEST['modfunc'] === 'save' ) // Print PDF.
 			echo '<tr><td><span style="font-size:x-large;">' . $school_info_RET[1]['PRINCIPAL'] . '</span><br />
 				<span style="font-size:large;">' . _( 'Principal' ) . '</span></td>';
 
+			// TODO: remove date + strtotime in 2.9 (END_DATE already returned in ISO format)!
 			echo '<td><span style="font-size:x-large;">' . ProperDate( date( 'Y.m.d', strtotime( $mp_RET[1]['END_DATE'] ) ) ) . '</span><br />
 				<span style="font-size:large;">' . _( 'Date' ) . '</span></td></tr>';
 
