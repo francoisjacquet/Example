@@ -34,4 +34,4 @@ Copy the `Example/` folder (if named `Example-master`, rename it) and its conten
 
 Go to _School Setup > School Configuration > Modules_ and click "Activate".
 
-Requires RosarioSIS 2.7+
+Requires RosarioSIS 2.9+
