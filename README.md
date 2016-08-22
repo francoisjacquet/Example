@@ -15,6 +15,8 @@ DESCRIPTION
 -----------
 This module serves as an example for developers who wish to create their own module for RosarioSIS.
 You will find useful comments in each file.
+Inline help.
+Consult the [Starter Guide](https://github.com/francoisjacquet/Example/wiki/Starter-Guide/)!
 
 CONTENT
 -------
