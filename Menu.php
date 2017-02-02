@@ -16,6 +16,7 @@ $module_name = dgettext( 'Example', 'Example' );
 
 // Menu entries for the Example module.
 $menu['Example']['admin'] = array( // Admin menu.
+	'title' => dgettext( 'Example', 'Example' ),
 	'default' => 'Example/ExampleWidget.php', // Program loaded by default when menu opened.
 	'Example/ExampleWidget.php' => dgettext( 'Example', 'Example Widget' ),
 	1 => dgettext( 'Example', 'Setup' ), // Add sub-menu 1 (only for admins).
@@ -23,6 +24,7 @@ $menu['Example']['admin'] = array( // Admin menu.
 );
 
 $menu['Example']['teacher'] = array( // Teacher menu
+	'title' => dgettext( 'Example', 'Example' ),
 	'default' => 'Example/ExampleWidget.php', // Program loaded by default when menu opened.
 	'Example/ExampleWidget.php' => dgettext( 'Example', 'Example Widget' ),
 );
