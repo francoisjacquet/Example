@@ -12,7 +12,7 @@
 
 /**
  * profile_exceptions Table
- * 
+ *
  * profile_id:
  * - 0: student
  * - 1: admin
@@ -23,23 +23,57 @@
  * can_edit: 'Y' or null (generally null for non admins)
  */
 --
--- Data for Name: profile_exceptions; Type: TABLE DATA; 
+-- Data for Name: profile_exceptions; Type: TABLE DATA;
 --
 
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-1, 'Example/Resources.php', 'Y', 'Y');
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-1, 'Example/ExampleResource.php', 'Y', 'Y');
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-1, 'Example/ExampleWidget.php', 'Y', 'Y');
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-1, 'Example/Setup.php', 'Y', 'Y');
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-0, 'Example/ExampleWidget.php', 'Y', null);
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-2, 'Example/ExampleWidget.php', 'Y', null);
-INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
-3, 'Example/ExampleWidget.php', 'Y', null);
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 1, 'Example/Resources.php', 'Y', 'Y'
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/Resources.php'
+    AND profile_id=1);
+
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 1, 'Example/ExampleResource.php', 'Y', 'Y'
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/ExampleResource.php'
+    AND profile_id=1);
+
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 1, 'Example/ExampleWidget.php', 'Y', 'Y'
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/ExampleWidget.php'
+    AND profile_id=1);
+
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 1, 'Example/Setup.php', 'Y', 'Y'
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/Setup.php'
+    AND profile_id=1);
+
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 0, 'Example/ExampleWidget.php', 'Y', null
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/ExampleWidget.php'
+    AND profile_id=0);
+
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 2, 'Example/ExampleWidget.php', 'Y', null
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/ExampleWidget.php'
+    AND profile_id=2);
+
+INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit)
+SELECT 3, 'Example/ExampleWidget.php', 'Y', null
+WHERE NOT EXISTS (SELECT profile_id
+    FROM profile_exceptions
+    WHERE modname='Example/ExampleWidget.php'
+    AND profile_id=3);
 
 
 
@@ -57,7 +91,10 @@ INSERT INTO profile_exceptions (profile_id, modname, can_use, can_edit) VALUES (
 --
 
 
-INSERT INTO program_config (syear, school_id, program, title, value) 
-	SELECT sch.syear, sch.id, 'example', 'EXAMPLE_CONFIG', '5'
-	FROM schools sch;
+INSERT INTO program_config (syear, school_id, program, title, value)
+SELECT sch.syear, sch.id, 'example', 'EXAMPLE_CONFIG', '5'
+FROM schools sch
+WHERE NOT EXISTS (SELECT title
+    FROM program_config
+    WHERE title='EXAMPLE_CONFIG');
 
