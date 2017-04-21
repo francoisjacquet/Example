@@ -5,7 +5,7 @@ Example Module
 
 http://github.com/francoisjacquet/Example
 
-Version 1.2 - August, 2016
+Version 1.3 - April, 2017
 
 License GNU GPL v2
 
